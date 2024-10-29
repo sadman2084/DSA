@@ -4,20 +4,13 @@ This repository contains solutions to various Data Structures and Algorithms (DS
 
 ## Index
 
-- [Chapter 2](./Chapter2/) - Array Manipulation
-- [Chapter 3](./Chapter3/) - Linked Lists
-- [Chapter 4](./Chapter4/) - Stacks and Queues
-- [Chapter 5](./Chapter5/) - Trees
-- [Chapter 6](./Chapter6/) - Graphs
-- [Chapter 7](./Chapter7/) - Sorting Algorithms
-- [Chapter 8](./Chapter8/) - Searching Algorithms
-- [Chapter 9](./Chapter9/) - Hashing
-- [Chapter 10](./Chapter10/) - Dynamic Programming
-- [Chapter 11](./Chapter11/) - Greedy Algorithms
-- [Chapter 12](./Chapter12/) - Backtracking
-- [Chapter 13](./Chapter13/) - Divide and Conquer
-- [Chapter 14](./Chapter14/) - Graph Algorithms
-- [Chapter 15](./Chapter15/) - Miscellaneous Problems
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%202" target="_blank">Chapter 2</a> - Preliminaries
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%203" target="_blank">Chapter 3</a> - String Processing
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%204" target="_blank">Chapter 4</a> - Arrays Records and Pointers
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%206" target="_blank">Chapter 5</a> - Linked Lists
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%207" target="_blank">Chapter 6</a> - Stacks Queues and Recursion
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%207" target="_blank">Chapter 7</a> - Trees
+- <a href="https://github.com/sadman2084/DSA/tree/main/chapter%208" target="_blank">Chapter 8</a> - Graphs and their Applications
 
 ---
 
