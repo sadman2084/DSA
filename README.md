@@ -11,7 +11,7 @@ This repository contains solutions to various Data Structures and Algorithms (DS
 - <a href="https://github.com/sadman2084/DSA/tree/main/chapter%207" target="_blank">Chapter 6</a> - Stacks Queues and Recursion
 - <a href="https://github.com/sadman2084/DSA/tree/main/chapter%207" target="_blank">Chapter 7</a> - Trees
 - <a href="https://github.com/sadman2084/DSA/tree/main/chapter%208" target="_blank">Chapter 8</a> - Graphs and their Applications
-
+- <a href="https://github.com/sadman2084/DSA/tree/main/Chapter%209" target="_blank">Chapter 9</a> - Sorting and Searching
 ---
 
 Each chapter contains multiple files for different DSA problems solved with code examples and explanations.
