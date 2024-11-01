@@ -1,73 +1,79 @@
-#include <iostream>
-#include <stack>
-#include <string>
-
+#include <bits/stdc++.h>
 using namespace std;
-
-int precedence(char op)
+int presidence(char c)
 {
-    if (op == '+' || op == '-')
-        return 1;
-    if (op == '*' || op == '/')
-        return 2;
-    return 0;
-}
-
-string infixToPostfix(string expression)
-{
-    string postfix = "";
-    stack<char> operatorStack;
-
-    for (char &c : expression)
+    if (c == '^')
     {
-        if (isalnum(c))
+        return 3;
+    }
+    else if (c == '*' || c == '/')
+    {
+        return 2;
+    }
+    else if (c == '+' || c == '-')
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+void InToPost(string p)
+{
+    stack<char> s;
+    string result;
+
+    for (int i = 0; i <p.size(); i++)
+    {
+        if ((p[i] >= 'a' && p[i] <= 'z') || (p[i] >= 'A' && p[i] <= 'Z'))
         {
-            postfix += c;
+            result = result + p[i];
         }
-        else if (c == '(')
+        else if (p[i] == '(')
         {
-            operatorStack.push(c);
+            s.push(p[i]);
         }
-        else if (c == ')')
+        else if (p[i] == ')')
         {
-            while (!operatorStack.empty() && operatorStack.top() != '(')
+            while (!s.empty() && s.top() != '(')
             {
-                postfix += operatorStack.top();
-                operatorStack.pop();
+                result = result + s.top();
+                s.pop();
             }
-            operatorStack.pop(); 
+
+            if (!s.empty())
+            {
+                s.pop();
+            }
         }
         else
         {
-            while (!operatorStack.empty() && precedence(c) <= precedence(operatorStack.top()))
+            while (!s.empty() && presidence(s.top()) >= presidence(p[i]))
             {
-                postfix += operatorStack.top();
-                operatorStack.pop();
+                result = result + s.top();
+                s.pop();
             }
-            operatorStack.push(c);
+          s.push(p[i]);
         }
     }
 
-    while (!operatorStack.empty())
+    while (!s.empty())
     {
-        postfix += operatorStack.top();
-
-    
-        operatorStack.pop();
+        result = result + s.top();
+        s.pop();
     }
-    return postfix;
-}
 
+
+    for(int i=0;i<p.size();i++)
+    {
+        cout<<result[i];
+    }
+}
 int main()
 {
-    string infixExpression;
-    cout << "Enter infix expression: ";
+    string p;
+    cin >> p;
 
-    cin >> infixExpression;
-
-    string postfixExpression = infixToPostfix(infixExpression);
-
-    cout << "Postfix expression: " << postfixExpression << endl;
-
-    return 0;
+    InToPost(p);
 }
