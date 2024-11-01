@@ -2,28 +2,19 @@
 using namespace std;
 #define INF 99999
 #define v 4
-void printDisplay(int graph[][v]);
 void floydwarshall(int graph[][v])
 {
     int i, j, k;
-    for (i = 0; i < v; i++)
+    for (k = 0; k < v; k++)
     {
-        for (j = 0; j < v; j++)
+        for (i = 0; i < v; i++)
         {
-            for (k = 0; k < v; k++)
+            for (j = 0; j < v; j++)
             {
-                if (graph[i][j] > (graph[i][k] + graph[k][j]) && graph[i][k] != INF && graph[k][j] != INF)
-                {
-                    graph[i][j] = graph[i][k] + graph[k][j];
-                }
+                graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j]);
             }
         }
     }
-    printDisplay(graph);
-}
-
-void printDisplay(int graph[][v])
-{
     for (int i = 0; i < v; i++)
     {
         for (int j = 0; j < v; j++)
@@ -41,12 +32,13 @@ void printDisplay(int graph[][v])
         cout << endl;
     }
 }
+
 int main()
 {
 
-    int graph[v][v] = {{0, 5, INF, 10},
-                       {INF, 0, 3, INF},
-                       {INF, INF, 0, 1},
-                       {INF, INF, INF, 0}};
+    int graph[v][v] = {{7, 5, INF, INF},
+                       {7, INF, INF, 2},
+                       {INF, 3, INF, INF},
+                       {4, INF, 1, INF}};
     floydwarshall(graph);
 }
