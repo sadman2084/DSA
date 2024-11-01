@@ -36,17 +36,13 @@ void transitiveClosure(int graph[][V])
 
 void printSolution(int reach[][V])
 {
-    printf("Following matrix is transitive");
-    printf("closure of the given graph\n");
     for (int i = 0; i < V; i++)
     {
         for (int j = 0; j < V; j++)
         {
 
-            if (i == j)
-                printf("1 ");
-            else
-                printf("%d ", reach[i][j]);
+            printf("%d ", reach[i][j]);
+               
         }
         printf("\n");
     }
@@ -55,10 +51,10 @@ void printSolution(int reach[][V])
 int main()
 {
 
-    int graph[V][V] = {{1, 1, 0, 1},
-                       {0, 1, 1, 0},
-                       {0, 0, 1, 1},
-                       {0, 0, 0, 1}};
+    int graph[V][V] = {{0, 0, 0, 1},
+                       {1, 0, 1, 1},
+                       {1, 0, 0, 1},
+                       {0, 0, 1, 0}};
 
     transitiveClosure(graph);
 }
