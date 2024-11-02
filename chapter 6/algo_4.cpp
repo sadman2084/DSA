@@ -1,79 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
-int presidence(char c)
+
+int prec(char c)
 {
     if (c == '^')
-    {
         return 3;
-    }
     else if (c == '*' || c == '/')
-    {
         return 2;
-    }
     else if (c == '+' || c == '-')
-    {
         return 1;
-    }
     else
-    {
         return -1;
-    }
 }
-void InToPost(string p)
+string infixtoPostfix(string s)
 {
-    stack<char> s;
+    stack<char> st;
     string result;
-
-    for (int i = 0; i <p.size(); i++)
+    for (int i = 0; i < s.length(); i++)
     {
-        if ((p[i] >= 'a' && p[i] <= 'z') || (p[i] >= 'A' && p[i] <= 'Z'))
+        if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
         {
-            result = result + p[i];
+            result += s[i];
         }
-        else if (p[i] == '(')
+        else if (s[i] == '(')
         {
-            s.push(p[i]);
+            st.push(s[i]);
         }
-        else if (p[i] == ')')
+        else if (s[i] == ')')
         {
-            while (!s.empty() && s.top() != '(')
+            while (!st.empty() && st.top() != '(')
             {
-                result = result + s.top();
-                s.pop();
+                result += st.top();
+                st.pop();
             }
-
-            if (!s.empty())
+            if (!st.empty())
             {
-                s.pop();
+                st.pop();
             }
         }
         else
         {
-            while (!s.empty() && presidence(s.top()) >= presidence(p[i]))
+            while (!st.empty() && prec(st.top()) >= prec(s[i]))
             {
-                result = result + s.top();
-                s.pop();
+                result += st.top();
+                st.pop();
             }
-          s.push(p[i]);
+            st.push(s[i]);
         }
     }
-
-    while (!s.empty())
+    while (!st.empty())
     {
-        result = result + s.top();
-        s.pop();
+        result += st.top();
+        st.pop();
     }
-
-
-    for(int i=0;i<p.size();i++)
-    {
-        cout<<result[i];
-    }
+    return result;
 }
+
 int main()
 {
-    string p;
-    cin >> p;
-
-    InToPost(p);
+    cout << infixtoPostfix("A+(B*C-(D/E^F)*G)*H") << endl;
 }
