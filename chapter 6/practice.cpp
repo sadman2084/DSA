@@ -1,40 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
-int partition(int arr[], int low, int high)
+int presidence(char c)
 {
-    int i = low - 1;
-    int pivot = arr[high];
-    for (int j = low; j <= high; j++)
+    if (c == '^')
     {
-        if (arr[j] < pivot)
+        return 3;
+    }
+    else if (c == '*' || c == '/')
+    {
+        return 2;
+    }
+    else if (c == '+' || c == '-')
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+void InToPost(string p)
+{
+    stack<char> s;
+    string result;
+
+    for (int i = 0; i < p.size(); i++)
+    {
+        if ((p[i] >= 'a' && p[i] <= 'z') || (p[i] >= 'A' && p[i] <= 'Z'))
         {
-            i++;
-            swap(arr[i], arr[j]);
+            result = result + p[i];
+        }
+        else if (p[i] == '(')
+        {
+            s.push(p[i]);
+        }
+        else if (p[i] == ')')
+        {
+            while (!s.empty() && s.top() != '(')
+            {
+                result = result + s.top();
+                s.pop();
+            }
+
+            if (!s.empty())
+            {
+                s.pop();
+            }
+        }
+        else
+        {
+            while (!s.empty() && presidence(s.top()) >= presidence(p[i]))
+            {
+                result = result + s.top();
+                s.pop();
+            }
+            s.push(p[i]);
         }
     }
 
-    swap(arr[i + 1], arr[high]);
-    return (i + 1);
-}
-void quicksort(int arr[], int low, int high)
-{
-    if (low < high)
+    while (!s.empty())
     {
-        int pi = partition(arr, low, high);
-
-        quicksort(arr, low, pi - 1);
-        quicksort(arr, pi + 1, high);
+        result = result + s.top();
+        s.pop();
     }
+
+    cout << result << endl;
 }
 int main()
 {
-    int arr[] = {10, 7, 8, 9, 1, 5};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    string p;
+    cin >> p;
 
-    quicksort(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    InToPost(p);
 }
