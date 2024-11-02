@@ -1,62 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int prec(char c)
+int presidence(char c)
 {
     if (c == '^')
-        return 3;
-    else if (c == '*' || c == '/')
-        return 2;
-    else if (c == '+' || c == '-')
-        return 1;
-    else
-        return -1;
-}
-string infixtoPostfix(string s)
-{
-    stack<char> st;
-    string result;
-    for (int i = 0; i < s.length(); i++)
     {
-        if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+        return 3;
+    }
+    else if (c == '*' || c == '/')
+    {
+        return 2;
+    }
+    else if (c == '+' || c == '-')
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+void InToPost(string p)
+{
+    stack<char> s;
+    string result;
+
+    for (int i = 0; i < p.size(); i++)
+    {
+        if ((p[i] >= 'a' && p[i] <= 'z') || (p[i] >= 'A' && p[i] <= 'Z'))
         {
-            result += s[i];
+            result = result + p[i];
         }
-        else if (s[i] == '(')
+        else if (p[i] == '(')
         {
-            st.push(s[i]);
+            s.push(p[i]);
         }
-        else if (s[i] == ')')
+        else if (p[i] == ')')
         {
-            while (!st.empty() && st.top() != '(')
+            while (!s.empty() && s.top() != '(')
             {
-                result += st.top();
-                st.pop();
+                result = result + s.top();
+                s.pop();
             }
-            if (!st.empty())
+
+            if (!s.empty())
             {
-                st.pop();
+                s.pop();
             }
         }
         else
         {
-            while (!st.empty() && prec(st.top()) >= prec(s[i]))
+            while (!s.empty() && presidence(s.top()) >= presidence(p[i]))
             {
-                result += st.top();
-                st.pop();
+                result = result + s.top();
+                s.pop();
             }
-            st.push(s[i]);
+            s.push(p[i]);
         }
     }
-    while (!st.empty())
-    {
-        result += st.top();
-        st.pop();
-    }
-    return result;
-}
 
+    while (!s.empty())
+    {
+        result = result + s.top();
+        s.pop();
+    }
+
+    cout << result << endl;
+}
 int main()
 {
-    cout << infixtoPostfix("A+(B*C-(D/E^F)*G)*H") << endl;
+    string p;
+    cin >> p;
+
+    InToPost(p);
 }
